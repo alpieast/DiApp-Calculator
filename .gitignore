@@ -1,0 +1,7 @@
+Constants.swift
+
+.DS_Store
+Pods/
+xcuserdata/
+*.xcworkspace/
+GoogleService-Info.plist

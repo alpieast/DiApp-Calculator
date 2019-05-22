@@ -1,0 +1,6 @@
+framework module Pods_Diapp {
+  umbrella header "Pods-Diapp-umbrella.h"
+
+  export *
+  module * { export * }
+}
