@@ -13,7 +13,7 @@ import FirebaseDatabase
 
 class ViewController: UIViewController {
 	
-	
+	var adCounter:Int = 0
 	var interstitial: GADInterstitial!
 	var bannerAdIsLoaded: Bool!
 	var fullScreenAdIsLoaded: Bool!
@@ -80,22 +80,19 @@ class ViewController: UIViewController {
 	@IBOutlet weak var resetButton: UIButton!
 	
 	@IBAction func totalButtonPressed(_ sender: Any) {
-		
-		totalButton.isEnabled = false
-		totalButton.backgroundColor = UIColor.darkGray
+		self.adCounter += 1
+		if adCounter == 4{
+			showFullScreenAd()
+			self.adCounter = 0
+			fullScreenAdLoader()
+		}
 		animateIn()
 		kaloriToplayıcı()
-		resetButton.isEnabled = true
-		
-		
 	}
 	
 	@IBAction func resetButtonPressed(_ sender: Any) {
-		resetButton.isEnabled = false
-		totalButton.isEnabled = true
-		totalButton.backgroundColor = UIColor.green
+		
 		labelCleaner()
-		showFullScreenAd()
 		fullScreenAdLoader()
 	}
 	
@@ -265,6 +262,7 @@ class ViewController: UIViewController {
 		bottomBannerView.rootViewController = self
 		bottomBannerView.load(GADRequest())
 		bottomBannerView.delegate = self
+		
 	}
 	
 	func fullScreenAdLoader(){//reklam yukleyici
@@ -332,7 +330,6 @@ class ViewController: UIViewController {
 		
 		//visual and functional
 		totalButton.backgroundColor = UIColor.green
-		resetButton.isEnabled = false
 		labelCleaner()
 		
 		//api parser funcs
